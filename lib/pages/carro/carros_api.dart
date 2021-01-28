@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:carros/pages/carro/carro.dart';
+import 'package:carros/pages/favoritos/carro_dao.dart';
 import 'package:carros/pages/login/usuario.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -28,7 +29,9 @@ class CarrosApi {
       Carro c = Carro.fromJson(map);
       carros.add(c);
     }
-//    List<Carro> carros = list.map((c) => Carro.fromJson(c));
+    final dao = CarroDAO();
+    carros.forEach(dao.save);
+
     return carros;
   }
 }
